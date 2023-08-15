@@ -23,8 +23,10 @@ console.log(currentUser.profile);
 
   return (
     <>
+    <div className="container">
       <Comments />
       <FormComment profile={currentUser.profile} />
+    </div>
     </>
   )
 }

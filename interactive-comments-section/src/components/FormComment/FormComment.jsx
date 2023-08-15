@@ -1,4 +1,4 @@
-
+import "./FormComment.css"
 
 export default function FormComment(profile) {
 
@@ -8,7 +8,7 @@ export default function FormComment(profile) {
     <>
     <form>
         <img src={profile.profile} alt="photo profile" />
-        <textarea />
+        <textarea placeholder="Add a comment..."/>
         <button>SEND</button>
     </form> 
     </>
