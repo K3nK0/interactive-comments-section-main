@@ -9,7 +9,7 @@ export default function FormComment(profile) {
     <form>
         <img src={profile.profile} alt="photo profile" />
         <textarea placeholder="Add a comment..."/>
-        <button>SEND</button>
+        <button className="btn-send">SEND</button>
     </form> 
     </>
   )

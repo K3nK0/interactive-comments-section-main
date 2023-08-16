@@ -34,7 +34,7 @@ textarea:focus {
     outline: 1px solid #5357B6;
 }
 
-button {
+.btn-send {
     width: 104px;
     height: 48px;
     border: none;
@@ -46,7 +46,7 @@ button {
     border-radius: 8px;
     cursor: pointer;
 }
-button:hover {
+.btn-send:hover {
     background: #C5C6EF;
 }
 

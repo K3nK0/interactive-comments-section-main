@@ -11,6 +11,16 @@ function App() {
     profile: undefined
   })
 
+  const [comment, setComment] = useState({
+    id: 1,
+    content: "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+    createdAt: "1 month ago",
+    score: 12,
+    userImg: "./public/avatars/image-amyrobson.webp",
+    username: "amyrobson",
+    replies: {}
+  })
+
   useEffect(() => {
     fetch("./data.json")
     .then(res => res.json())
@@ -19,12 +29,10 @@ function App() {
     })
 }, [])
 
-console.log(currentUser.profile);
-
   return (
     <>
     <div className="container">
-      <Comments />
+      <Comments comment={comment}/>
       <FormComment profile={currentUser.profile} />
     </div>
     </>
