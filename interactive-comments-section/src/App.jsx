@@ -46,18 +46,20 @@ function App() {
       createdAt: "just now",
       score: 0,
       userImg: currentUser.photoProfile,
-      username: "juliusomo",
+      username: currentUser.name,
     }])
   }
 
-  console.log(comments);
+  function deleteComment(id){
+    setComments(comments.filter(comment => comment.id != id))
+  }
 
   return (
     <>
     <div className="container">
       {comments.length > 0 &&
       comments.map(com => (
-        <Comments key={com.id} comment={com} />
+        <Comments key={com.id} comment={com} currentUser={currentUser.name} deleteComment={deleteComment} />
       ))}
       
       <form onSubmit={handleSubmit}>
@@ -68,8 +70,6 @@ function App() {
         placeholder="Add a comment..."/>
         <button className="btn-send">SEND</button>
       </form> 
-
-      {/* <FormComment profile={currentUser.profile} setComments={setComments} comments={comments} /> */}
     </div>
     </>
   )
