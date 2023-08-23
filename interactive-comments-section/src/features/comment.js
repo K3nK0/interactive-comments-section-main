@@ -69,9 +69,21 @@ export const comment = createSlice({
             if(scoreCalc.score > 0){
                 scoreCalc.score--
             }
+        },
+        deleteReplie: (state, action) => {
+            const replie = state.replies.find(reply => reply.id === action.payload)
+            state.replies = state.replies.filter(replie => replie.id !== action.payload)
+        },
+        deleteComment: (state, action) => {
+            const comment = state.comment.find(comment => comment.id === action.payload)
+            state.comment = state.comment.filter(comment => comment.id !== action.payload)
+        },
+        addNewComment: (state, action) => {
+            console.log(action);
+            state.comment.push(action.payload)
         }
     }
 })
 
-export const {increment, decrement, incrementReplie, decrementReplie} = comment.actions
+export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment} = comment.actions
 export default comment.reducer

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { increment, decrement } from "../../features/comment"
+import { increment, decrement, deleteComment } from "../../features/comment"
 import "./Comments.css"
 import Reply from "../reply/Reply"
 
@@ -30,7 +30,7 @@ export default function Comments() {
             <div className="container-user">
               <img src={com.userImg} alt="photo profil" />
               <p className="username">{com.username}</p>
-              {com.username === currentUser &&(
+              {com.username === currentUser.username &&(
                 <span className="you">you</span>
               )}
               <p className="created-at">{com.createdAt}</p>
@@ -39,7 +39,7 @@ export default function Comments() {
             <div className="container-btns">
               {com.username === currentUser.username &&(
                 <button
-                onClick={() => deleteComment(com.id)}
+                onClick={() => dispatch(deleteComment(com.id))}
                 className="container-delete">
                 <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M1.167 12.448c0 .854.7 1.552 1.555 1.552h6.222c.856 0 1.556-.698 1.556-1.552V3.5H1.167v8.948Zm10.5-11.281H8.75L7.773 0h-3.88l-.976 1.167H0v1.166h11.667V1.167Z"/></svg>
                 <span className="delete">Delete</span>
