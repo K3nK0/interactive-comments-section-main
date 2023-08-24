@@ -79,7 +79,6 @@ export const comment = createSlice({
             state.comment = state.comment.filter(comment => comment.id !== action.payload)
         },
         addNewComment: (state, action) => {
-            console.log(action);
             state.comment.push(action.payload)
         }
     }

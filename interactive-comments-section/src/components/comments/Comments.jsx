@@ -4,6 +4,7 @@ import "./Comments.css"
 import Reply from "../reply/Reply"
 import BtnReply from "../BtnReply/BtnReply"
 import BtnDelete from "../BtnDelete/BtnDelete"
+import BtnEdit from "../BtnEdit/BtnEdit"
 
 
 export default function Comments() {
@@ -42,9 +43,7 @@ export default function Comments() {
               {com.username === currentUser.username &&(
                 <BtnDelete com={com.id} func={deleteComment} />
               )}
-
-              <BtnReply />
-
+            {com.username === currentUser.username ? <BtnEdit /> : <BtnReply />}
             </div>
 
             <div className="comment">
@@ -53,7 +52,7 @@ export default function Comments() {
 
           </div>
 
-          <div className="container-replies">
+            <div className="container-replies">
 
             <div className="line-left">
             </div>
