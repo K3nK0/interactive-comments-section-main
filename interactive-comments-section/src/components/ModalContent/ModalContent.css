@@ -55,3 +55,20 @@
 .btn-modal-delete {
     background: #ED6368;
 }
+
+@media (max-width: 730px) {
+    .container-modal {
+        width: 343px;
+        padding: 24px 27px;
+    }
+    .container-modal h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+    .container-modal p {
+        margin-bottom: 16px;
+    }
+    .container-btns-modal {
+        gap: 12px;
+    }
+}
