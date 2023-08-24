@@ -8,7 +8,7 @@ export default function ModalContent() {
         <div className="container-modal">
             <h2>Delete comment</h2>
             <p>Are you sure you want to delete this comment? This will remove the comment and can’t be undone.</p>
-            <div className="btn-modal">
+            <div className="container-btns-modal">
                 <BtnModalCancel />
                 <BtnModalDelete />
             </div>

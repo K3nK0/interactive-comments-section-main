@@ -34,7 +34,7 @@ export default function Reply({replie, currentUser}) {
 
       <div className="container-btns">
         {replie.username === currentUser.username &&(
-          <BtnDelete com={replie.id} func={deleteReplie} />
+          <BtnDelete delID={replie.id} foo={"deleteReplie"} />
         )}
         {replie.username === currentUser.username ? <BtnEdit /> : <BtnReply />}        
       </div>

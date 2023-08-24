@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { increment, decrement, deleteComment } from "../../features/comment"
+import { increment, decrement } from "../../features/comment"
 import "./Comments.css"
 import Reply from "../reply/Reply"
 import BtnReply from "../BtnReply/BtnReply"
@@ -41,7 +41,7 @@ export default function Comments() {
 
             <div className="container-btns">
               {com.username === currentUser.username &&(
-                <BtnDelete com={com.id} func={deleteComment} />
+                <BtnDelete delID={com.id} foo={"deleteComment"} />
               )}
             {com.username === currentUser.username ? <BtnEdit /> : <BtnReply />}
             </div>
