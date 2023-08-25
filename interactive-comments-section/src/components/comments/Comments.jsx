@@ -7,7 +7,7 @@ import BtnReply from "../BtnReply/BtnReply"
 import BtnDelete from "../BtnDelete/BtnDelete"
 import BtnEdit from "../BtnEdit/BtnEdit"
 import BtnUpdate from "../BtnUpdate/BtnUpdate"
-import NewComment from "../NewComment/NewComment"
+import NewAnswer from "../NewAnswer/NewAnswer"
 
 
 export default function Comments() {
@@ -82,6 +82,8 @@ export default function Comments() {
             </div>
           
           </div>
+
+          <NewAnswer respondTo={com.username}/>
 
         </div>
       ))}

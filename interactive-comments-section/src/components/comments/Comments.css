@@ -195,7 +195,6 @@
     }
 }
 
-
 .container-replie {
     display: grid;
     grid-template-columns: 40px auto 1fr;
@@ -207,12 +206,8 @@
     border-radius: 8px;
 }
 
-.container-replie:nth-child(1) {
+.block-replie:nth-child(1) {
     margin-top: 20px;
-}
-
-.container-replies {
-    /* margin-bottom: 20px; */
 }
 
 .replie {
@@ -233,5 +228,9 @@
         grid-column-gap: 0px;
         grid-row-gap: 16px;
         padding: 16px;
+    }
+
+    .block-replie:nth-child(1) {
+        margin-top: 16px;
     }
 }

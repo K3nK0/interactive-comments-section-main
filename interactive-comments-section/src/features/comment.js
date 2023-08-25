@@ -83,6 +83,9 @@ export const comment = createSlice({
         addNewComment: (state, action) => {
             state.comment.push(action.payload)
         },
+        addNewAnswer: (state, action) => {
+            state.comment.push(action.payload)
+        },
         editReplie: (state, action) => {
             const editReplie = state.replies.find(reply => reply.id === action.payload)
             editReplie.editMode = true
@@ -104,5 +107,5 @@ export const comment = createSlice({
     }
 })
 
-export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment, editReplie, editComment, validComment, validReplie} = comment.actions
+export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment, addNewAnswer, editReplie, editComment, validComment, validReplie} = comment.actions
 export default comment.reducer
