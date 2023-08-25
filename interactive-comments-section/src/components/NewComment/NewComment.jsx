@@ -20,7 +20,8 @@ export default function NewComment() {
         score: 0,
         userImg: currentUser.photoProfile,
         username: currentUser.username,
-        editMode: false
+        editMode: false,
+        reply: false
       }))
       setNewComment("")
     }

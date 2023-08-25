@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid"
 
 const initialState = {
     comment: [
@@ -10,7 +9,8 @@ const initialState = {
         score: 12,
         userImg: "./avatars/image-amyrobson.png",
         username: "amyrobson",
-        editMode: false
+        editMode: false,
+        reply: false
         },
         {
         id: 2,
@@ -19,7 +19,8 @@ const initialState = {
         score: 5,
         userImg: "./avatars/image-maxblagun.webp",
         username: "maxblagun",
-        editMode: false
+        editMode: false,
+        reply: false
         }
     ],
     replies: [
@@ -32,7 +33,8 @@ const initialState = {
         replyingTo: "maxblagun",
         userImg: "./avatars/image-ramsesmiron.webp",
         username: "ramsesmiron",
-        editMode: false
+        editMode: false,
+        reply: false
         },
         {
         replying: 2,
@@ -43,7 +45,8 @@ const initialState = {
         replyingTo: "ramsesmiron",
         userImg: "./avatars/image-juliusomo.png",
         username: "juliusomo",
-        editMode: false
+        editMode: false,
+        reply: false
         }
     ]
 }
@@ -84,7 +87,15 @@ export const comment = createSlice({
             state.comment.push(action.payload)
         },
         addNewAnswer: (state, action) => {
-            state.comment.push(action.payload)
+            state.replies.push(action.payload.contentAnswer)
+
+            if(action.payload.comment === "comment"){
+                const closeCom = state.comment.find(comment => comment.id === action.payload.comID)
+                closeCom.reply = false
+            }else{
+                const closeCom = state.replies.find(comment => comment.id === action.payload.comID)
+                closeCom.reply = false
+            }
         },
         editReplie: (state, action) => {
             const editReplie = state.replies.find(reply => reply.id === action.payload)
@@ -95,6 +106,7 @@ export const comment = createSlice({
             editComment.editMode = true
         },
         validComment: (state, action) => {
+            console.log(action.payload.comID);
             const editComment = state.comment.find(comment => comment.id === action.payload.comID)
             editComment.content = action.payload.content
             editComment.editMode = false
@@ -103,9 +115,17 @@ export const comment = createSlice({
             const editReplie = state.replies.find(replie => replie.id === action.payload.comID)
             editReplie.content = action.payload.content
             editReplie.editMode = false
-        }
+        },
+        replyReplie: (state, action) => {
+            const replyReplie = state.replies.find(reply => reply.id === action.payload)
+            replyReplie.reply = true
+        },
+        replyComment: (state, action) => {
+            const replyComment = state.comment.find(comment => comment.id === action.payload)
+            replyComment.reply = true
+        },
     }
 })
 
-export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment, addNewAnswer, editReplie, editComment, validComment, validReplie} = comment.actions
+export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment, addNewAnswer, editReplie, editComment, validComment, validReplie, replyReplie, replyComment} = comment.actions
 export default comment.reducer

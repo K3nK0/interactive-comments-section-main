@@ -4,38 +4,44 @@ import {nanoid} from "nanoid"
 import { useState } from "react"
 import "./NewAnswer.css"
 
-export default function NewAnswer({respondTo}) {
+export default function NewAnswer({respondTo, fromComment, comId, comment}) {
 
     const currentUser = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
-    const [answer, setAnswer] = useState(`@${respondTo} `)
+    const [theRespondTo, setTheRespondTo] = useState(`@${respondTo} `)
+    const [contentAnswer, setContentAnswer] = useState(`@${respondTo} `)
 
     function handleSubmit(e){
       e.preventDefault()
-      if(answer === "") return
-      dispatch(addNewAnswer({
+      if(contentAnswer.replace(theRespondTo, "") === "") return
+      dispatch(addNewAnswer({contentAnswer: {
         id: nanoid(8),
-        content: answer,
+        content: contentAnswer.replace(theRespondTo, ""),
         createdAt: "just now",
         score: 0,
         userImg: currentUser.photoProfile,
         username: currentUser.username,
         editMode: false,
-        replyingTo: "",
-        replying: ""
+        reply: false,
+        replyingTo: respondTo,
+        replying: fromComment
+      },
+      comID: comId,
+      comment: comment
       }))
-      setAnswer("")
+      setContentAnswer(`@${respondTo} `)
     } 
 
   return (
     <form
     className="form-answer"
     onSubmit={handleSubmit}>
-        <img src={currentUser.photoProfile} alt="photo profile" />
+      <img src={currentUser.photoProfile} alt="photo profile" />
         <textarea 
-        value={answer}
-        onChange={e => setAnswer(e.target.value)}
+          id="area-answer"
+          value={contentAnswer}
+          onChange={e => {setContentAnswer(e.target.value)}}
         />
         <button className="btn-send">REPLY</button>
     </form>

@@ -8,7 +8,7 @@ import BtnEdit from "../BtnEdit/BtnEdit"
 import BtnUpdate from "../BtnUpdate/BtnUpdate"
 import NewAnswer from "../NewAnswer/NewAnswer"
 
-export default function Reply({replie, currentUser}) {
+export default function Reply({replie, currentUser, fromComment}) {
 
   const commentList = useSelector(state => state.comment)
   const dispatch = useDispatch()
@@ -42,7 +42,7 @@ export default function Reply({replie, currentUser}) {
           {replie.username === currentUser.username &&(
             <BtnDelete delID={replie.id} foo={"deleteReplie"} />
           )}
-          {replie.username === currentUser.username ? <BtnEdit comID={replie.id} setEditCom={setEditCom} content={replie.content} objet={"replie"} /> : <BtnReply />}
+          {replie.username === currentUser.username ? <BtnEdit comID={replie.id} setEditCom={setEditCom} content={replie.content} objet={"replie"} /> : <BtnReply getID={replie.id} objet={"replie"} />}
         </div>
 
         <div className="comment">
@@ -63,10 +63,11 @@ export default function Reply({replie, currentUser}) {
 
       </div>
 
-      <div>
-        <NewAnswer respondTo={replie.username}/>
-      </div>
-
+      {replie.reply === true &&(
+        <div>
+          <NewAnswer respondTo={replie.username} fromComment={fromComment} comId={replie.id} comment={"replie"} />
+        </div>
+      )}
     </div>
   )
 }

@@ -49,7 +49,7 @@ export default function Comments() {
               {com.username === currentUser.username &&(
                 <BtnDelete delID={com.id} foo={"deleteComment"} />
               )}
-            {com.username === currentUser.username ? <BtnEdit comID={com.id} setEditCom={setEditCom} content={com.content} objet={"comment"} /> : <BtnReply />}
+            {com.username === currentUser.username ? <BtnEdit comID={com.id} setEditCom={setEditCom} content={com.content} objet={"comment"} /> : <BtnReply getID={com.id} objet={"comment"} />}
             </div>
 
             <div className="comment">
@@ -77,13 +77,13 @@ export default function Comments() {
 
             <div className="replie">
             {commentList.replies.filter(reply => reply.replying === com.id).map(replie => (
-              <Reply replie={replie} currentUser={currentUser} />
+              <Reply replie={replie} currentUser={currentUser} fromComment={com.id} />
             ))}
             </div>
           
           </div>
 
-          <NewAnswer respondTo={com.username}/>
+          {com.reply &&(<NewAnswer respondTo={com.username} fromComment={com.id} comId={com.id} comment={"comment"} />)}
 
         </div>
       ))}
