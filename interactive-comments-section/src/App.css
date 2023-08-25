@@ -1,6 +1,9 @@
 .container {
     width: clamp(343px, 70vw, 730px);
     margin: 64px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 form {
@@ -56,6 +59,10 @@ textarea:focus {
 }
 
 @media (max-width: 730px) {
+    .container {
+        gap: 16px;
+    }
+
     form {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 96px 48px;

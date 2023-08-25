@@ -45,7 +45,7 @@ export default function Reply({replie, currentUser}) {
   
       <div className="comment">
         {!replie.editMode ?
-        <p>{replie.content}</p>
+        <p><span className="replying-to">@{replie.replyingTo}</span> {replie.content}</p>
         :
         <textarea 
         value={editCom}

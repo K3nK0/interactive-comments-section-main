@@ -7,7 +7,6 @@
     background: #FFF;
     padding: 24px;
     border-radius: 8px;
-    margin-bottom: 20px;
 }
 
 .container-score {
@@ -208,14 +207,23 @@
     border-radius: 8px;
 }
 
+.container-replie:nth-child(1) {
+    margin-top: 20px;
+}
+
 .container-replies {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .replie {
     display: flex;
     flex-direction: column;
     gap :20px;
+}
+
+.replying-to {
+    color: #5357B6;
+    font-weight: 500;
 }
 
 @media (max-width: 730px){

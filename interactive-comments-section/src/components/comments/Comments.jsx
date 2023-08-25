@@ -7,6 +7,7 @@ import BtnReply from "../BtnReply/BtnReply"
 import BtnDelete from "../BtnDelete/BtnDelete"
 import BtnEdit from "../BtnEdit/BtnEdit"
 import BtnUpdate from "../BtnUpdate/BtnUpdate"
+import NewComment from "../NewComment/NewComment"
 
 
 export default function Comments() {
