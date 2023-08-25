@@ -39,7 +39,7 @@ textarea:focus {
     outline: 1px solid #5357B6;
 }
 
-.btn-send {
+.btn-send, .btn-update {
     width: 104px;
     height: 48px;
     border: none;
@@ -51,7 +51,7 @@ textarea:focus {
     border-radius: 8px;
     cursor: pointer;
 }
-.btn-send:hover {
+.btn-send:hover, .btn-update:hover {
     background: #C5C6EF;
 }
 

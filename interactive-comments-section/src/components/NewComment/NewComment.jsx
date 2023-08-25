@@ -19,7 +19,8 @@ export default function NewComment() {
         createdAt: "just now",
         score: 0,
         userImg: currentUser.photoProfile,
-        username: currentUser.username
+        username: currentUser.username,
+        editMode: false
       }))
       setNewComment("")
     }

@@ -1,0 +1,11 @@
+.btn-update {
+    grid-area: 3 / 3 / 4 / 4;
+    justify-self: end;
+}
+
+@media (max-width: 730px){
+    .btn-update {
+        grid-area: 4 / 2 / 5 / 3;
+        justify-self: end;
+    }
+}

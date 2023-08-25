@@ -9,7 +9,8 @@ const initialState = {
         createdAt: "1 month ago",
         score: 12,
         userImg: "./avatars/image-amyrobson.png",
-        username: "amyrobson"
+        username: "amyrobson",
+        editMode: false
         },
         {
         id: 2,
@@ -18,6 +19,7 @@ const initialState = {
         score: 5,
         userImg: "./avatars/image-maxblagun.webp",
         username: "maxblagun",
+        editMode: false
         }
     ],
     replies: [
@@ -29,7 +31,8 @@ const initialState = {
         score: 4,
         replyingTo: "maxblagun",
         userImg: "./avatars/image-ramsesmiron.webp",
-        username: "ramsesmiron"
+        username: "ramsesmiron",
+        editMode: false
         },
         {
         replying: 2,
@@ -39,11 +42,10 @@ const initialState = {
         score: 2,
         replyingTo: "ramsesmiron",
         userImg: "./avatars/image-juliusomo.png",
-        username: "juliusomo"
+        username: "juliusomo",
+        editMode: false
         }
     ]
-
-    
 }
 
 export const comment = createSlice({
@@ -80,9 +82,27 @@ export const comment = createSlice({
         },
         addNewComment: (state, action) => {
             state.comment.push(action.payload)
+        },
+        editReplie: (state, action) => {
+            const editReplie = state.replies.find(reply => reply.id === action.payload)
+            editReplie.editMode = true
+        },
+        editComment: (state, action) => {
+            const editComment = state.comment.find(comment => comment.id === action.payload)
+            editComment.editMode = true
+        },
+        validComment: (state, action) => {
+            const editComment = state.comment.find(comment => comment.id === action.payload.comID)
+            editComment.content = action.payload.content
+            editComment.editMode = false
+        },
+        validReplie: (state, action) => {
+            const editReplie = state.replies.find(replie => replie.id === action.payload.comID)
+            editReplie.content = action.payload.content
+            editReplie.editMode = false
         }
     }
 })
 
-export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment} = comment.actions
+export const {increment, decrement, incrementReplie, decrementReplie, deleteReplie, deleteComment, addNewComment, editReplie, editComment, validComment, validReplie} = comment.actions
 export default comment.reducer

@@ -1,14 +1,18 @@
 import { useSelector, useDispatch } from "react-redux"
 import { incrementReplie, decrementReplie, deleteReplie } from "../../features/comment"
+import { useState } from "react"
 import "./Reply.css"
 import BtnDelete from "../BtnDelete/BtnDelete"
 import BtnReply from "../BtnReply/BtnReply"
 import BtnEdit from "../BtnEdit/BtnEdit"
+import BtnUpdate from "../BtnUpdate/BtnUpdate"
 
 export default function Reply({replie, currentUser}) {
 
   const commentList = useSelector(state => state.comment)
   const dispatch = useDispatch()
+
+  const [editCom, setEditCom] = useState("")
 
   return (
     <div className="container-replie" key={replie.id}>
@@ -36,12 +40,24 @@ export default function Reply({replie, currentUser}) {
         {replie.username === currentUser.username &&(
           <BtnDelete delID={replie.id} foo={"deleteReplie"} />
         )}
-        {replie.username === currentUser.username ? <BtnEdit /> : <BtnReply />}        
+        {replie.username === currentUser.username ? <BtnEdit comID={replie.id} setEditCom={setEditCom} content={replie.content} objet={"replie"} /> : <BtnReply />}
       </div>
   
       <div className="comment">
+        {!replie.editMode ?
         <p>{replie.content}</p>
+        :
+        <textarea 
+        value={editCom}
+        onChange={e => setEditCom(e.target.value)}
+        readOnly={false}
+        />
+        }
       </div>
+
+      {(replie.username === currentUser.username && replie.editMode === true &&(
+        <BtnUpdate comID={replie.id} content={editCom} setEditCom={setEditCom} objet={"replie"} />
+      ))}
 
     </div>
   )

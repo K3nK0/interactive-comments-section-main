@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from "react-redux"
 import { increment, decrement } from "../../features/comment"
+import { useState } from "react"
 import "./Comments.css"
 import Reply from "../reply/Reply"
 import BtnReply from "../BtnReply/BtnReply"
 import BtnDelete from "../BtnDelete/BtnDelete"
 import BtnEdit from "../BtnEdit/BtnEdit"
+import BtnUpdate from "../BtnUpdate/BtnUpdate"
 
 
 export default function Comments() {
@@ -12,6 +14,9 @@ export default function Comments() {
   const dispatch = useDispatch()
   const commentList = useSelector(state => state.comment)
   const currentUser = useSelector(state => state.currentUser)
+  const editMode = useSelector(state => state.comment.editMode)
+
+  const [editCom, setEditCom] = useState("")
 
   return (
     <>
@@ -43,12 +48,24 @@ export default function Comments() {
               {com.username === currentUser.username &&(
                 <BtnDelete delID={com.id} foo={"deleteComment"} />
               )}
-            {com.username === currentUser.username ? <BtnEdit /> : <BtnReply />}
+            {com.username === currentUser.username ? <BtnEdit comID={com.id} setEditCom={setEditCom} content={com.content} objet={"comment"} /> : <BtnReply />}
             </div>
 
             <div className="comment">
-              <p>{com.content}</p>
+              {!com.editMode ? 
+              <p>{com.content}</p> 
+              : 
+              <textarea 
+              value={editCom}
+              onChange={e => setEditCom(e.target.value)}
+              readOnly={false}
+              />
+              }
             </div>
+
+            {(com.username === currentUser.username && com.editMode === true &&(
+              <BtnUpdate comID={com.id} content={editCom} setEditCom={setEditCom} objet={"comment"} />
+            ))}
 
           </div>
 

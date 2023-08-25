@@ -1,7 +1,7 @@
 .container-comment {
     display: grid;
     grid-template-columns: 40px auto 1fr;
-    grid-template-rows: 32px 1fr;
+    grid-template-rows: 32px 1fr auto;
     grid-column-gap: 24px;
     grid-row-gap: 15px;
     background: #FFF;
@@ -154,7 +154,7 @@
 @media (max-width: 730px){
     .container-comment {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 32px 1fr 40px;
+        grid-template-rows: 32px 1fr 40px auto;
         grid-column-gap: 0px;
         grid-row-gap: 16px;
         padding: 16px;
