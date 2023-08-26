@@ -15,6 +15,65 @@ export default function Reply({replie, currentUser, fromComment}) {
 
   const [editCom, setEditCom] = useState("")
 
+  let currentDate = new Date()
+  function dateDiff(date1, date2){
+    let diff = {}
+    let tmp = new Date(date2) - new Date(date1);
+    tmp = Math.floor(tmp/1000);
+    diff.sec = tmp % 60;
+    tmp = Math.floor((tmp-diff.sec)/60);
+    diff.min = tmp % 60;
+    tmp = Math.floor((tmp-diff.min)/60);
+    diff.hour = tmp % 24;
+    tmp = Math.floor((tmp-diff.hour)/24);
+    diff.day = tmp % 31;
+    tmp = Math.floor((tmp-diff.day)/31);
+    diff.month = tmp % 12;
+    tmp = Math.floor((tmp-diff.month)/12);
+    diff.year = tmp;
+    
+    if(diff.year > 0){
+      if(diff.year === 1){
+        return "1 year ago"
+      }else{
+        return `${diff.year} years ago`
+      }
+    }
+    if(diff.month > 0){
+      if(diff.month === 1){
+        return "1 month ago"
+      }else{
+        return `${diff.month} months ago`
+      }
+    }
+    if(diff.day > 0){
+      if(diff.day === 1){
+        return "1 day ago"
+      }else if(diff.day / 7 < 1){
+        return `${diff.day} days ago`
+      }else{if(Math.trunc(diff.day / 7) === 1){
+        return "1 week ago"
+      } return `${Math.trunc(diff.day / 7)} weeks ago`
+    }
+    }
+    if(diff.hour > 0){
+      if(diff.hour === 1){
+        return "1 hour ago"
+      }else{
+        return `${diff.hour} hours ago`
+      }
+    }
+    if(diff.min > 0){
+      if(diff.min === 1){
+        return "1 min ago"
+      }else{
+        return `${diff.min} mins ago`
+      }
+    }else{
+      return "just now"
+    }
+  }
+
   return (
     <div className="block-replie">
       <div className="container-replie" key={replie.id}>
@@ -35,7 +94,7 @@ export default function Reply({replie, currentUser, fromComment}) {
           {replie.username === currentUser.username &&(
             <span className="you">you</span>
           )}
-          <p className="created-at">{replie.createdAt}</p>
+          <p className="created-at">{dateDiff(replie.createdAt, currentDate)}</p>
         </div>
 
         <div className="container-btns">

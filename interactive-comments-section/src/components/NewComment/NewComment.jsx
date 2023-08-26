@@ -5,6 +5,9 @@ import { useState } from "react"
 
 export default function NewComment() {
 
+    const currentDate = new Date()
+    const date = `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()+1}:${currentDate.getSeconds()}`
+
     const currentUser = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
@@ -15,8 +18,8 @@ export default function NewComment() {
       if(newComment === "") return
       dispatch(addNewComment({
         id: nanoid(8),
-        content:newComment,
-        createdAt: "just now",
+        content: newComment,
+        createdAt: date,
         score: 0,
         userImg: currentUser.photoProfile,
         username: currentUser.username,
